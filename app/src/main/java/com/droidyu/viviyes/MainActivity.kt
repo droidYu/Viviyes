@@ -2,14 +2,13 @@ package com.droidyu.viviyes
 
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.droidyu.viviyes.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -20,7 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.setBackgroundDrawable(getDrawable(R.color.white))
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         val titles = arrayListOf("排行榜", "搜索", "酒逢知己", "我的资料")
         val unSelectedIcons = arrayListOf(
             R.drawable.tab_icon_toplists,
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .apply {
-
+                setSupportActionBar(toolbar)
                 repeat(titles.size) {
                     tabLayout.addTab(tabLayout.newTab())
                 }
@@ -74,13 +75,6 @@ class MainActivity : AppCompatActivity() {
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.icon = resources.getDrawable(unSelectedIcons[position], null)
                 }.attach()
-
-                registerForContextMenu(ivMenu)
-                ivMenu.setOnClickListener {
-                    ivMenu.performLongClick(ivMenu.x, ivMenu.y)
-                }
-
-
             }
     }
 
@@ -89,32 +83,10 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        menuInflater.inflate(R.menu.menu_main, menu)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
     }
 
-    class MyPageAdapter(
-        manager: FragmentManager,
-        mLifecycle: Lifecycle,
-        private val fragments: List<Fragment>
-    ) :
-        FragmentStateAdapter(manager, mLifecycle) {
-        override fun getItemCount(): Int {
-            return fragments.size
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return fragments[position]
-        }
-    }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         when (event.keyCode) {

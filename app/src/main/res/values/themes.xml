@@ -5,6 +5,9 @@
         <item name="colorPrimary">@color/red_500</item>
         <item name="colorPrimaryVariant">@color/red_700</item>
         <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="windowSplashScreenIconBackgroundColor">@color/red_700</item>

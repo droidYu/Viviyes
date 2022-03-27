@@ -6,66 +6,64 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.Viviyes.AppBarOverlay"
-            app:layout_constraintBottom_toTopOf="@id/view_pager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:theme="@style/Theme.Viviyes.AppBarOverlay">
 
-            <androidx.appcompat.widget.ActionMenuView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:theme="@style/Widget.AppCompat.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_launcher_foreground" />
-
-                <TextView
-                    android:id="@+id/my_title"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:minHeight="?actionBarSize"
-                    android:text="@string/app_name"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/iv_notification"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:padding="10dp"
-                    android:src="@drawable/icon_notification" />
 
-                <ImageView
-                    android:id="@+id/iv_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_menu" />
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_launcher_foreground" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/myTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="16dp"
+                        android:src="@drawable/icon_notification" />
+
+                </LinearLayout>
+
+
+            </androidx.appcompat.widget.Toolbar>
+
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
@@ -81,28 +79,19 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_bar"
-            app:layout_constraintVertical_weight="1" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
             android:backgroundTint="@color/red_500"
             android:src="@drawable/ic_photo_camera_white_48dp"
             app:backgroundTint="@color/red_500"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:tint="@color/white" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </layout>
