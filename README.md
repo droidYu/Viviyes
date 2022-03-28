@@ -1,5 +1,5 @@
 # Viviyes
 
-复刻Vivino
+Copy from [Vivino](vivino.com)
 
 [Download by Gitee](https://gitee.com/droidYu/viviyes/raw/master/viviyes.apk)
